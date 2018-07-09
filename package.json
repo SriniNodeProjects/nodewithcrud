@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/SriniNodeProjects/nodewithcrud/issues"
   },
-  "homepage": "https://github.com/SriniNodeProjects/nodewithcrud#readme"
+  "homepage": "https://github.com/SriniNodeProjects/nodewithcrud#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
