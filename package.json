@@ -1,0 +1,24 @@
+{
+  "name": "webappv2",
+  "version": "1.0.0",
+  "description": "node with curd values",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SriniNodeProjects/nodewithcrud.git"
+  },
+  "keywords": [
+    "node",
+    "with",
+    "crud"
+  ],
+  "author": "srini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SriniNodeProjects/nodewithcrud/issues"
+  },
+  "homepage": "https://github.com/SriniNodeProjects/nodewithcrud#readme"
+}
