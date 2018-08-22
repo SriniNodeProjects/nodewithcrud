@@ -1,0 +1,36 @@
+<html>
+ <head>
+     <title>Show Details</title>
+ </head>
+<body>
+<p></p>
+<table>
+    <thead>
+      <th>
+          <td>Sno</td>
+          <td>First Name</td>
+          <td>Last Name</td>
+          <td>Email</td>
+          <td>Phone Number</td>
+          <td>Action</td>
+      </th>
+    </thead>
+    <%  var i = 0; %>
+    <% memberdata.forEach(function(data,i) { %>
+        <tr>
+            <td><%= i %></td>
+            <td><%= data.firstname %></td>
+            <td><%= data.lastname %></td>
+            <td><%= data.email %></td>
+            <td><%= data.phno %></td>
+            <td><a href="">Edit</a><a href="">Delete</a></td>
+        </tr>
+        <% i++ %>
+    <% }) %>
+
+
+
+</table>
+
+</body>
+</html>
