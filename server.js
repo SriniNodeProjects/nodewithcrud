@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var mongodb = require('mongodb');
+
 const bcrypt = require('bcrypt');
 var mydb;
 var app = express();
@@ -59,6 +61,7 @@ app.post('/login', function(req , res) {
 
 });
 
+//  Show the Records 
 app.get('/show', function(req , res) {
 
        mydb.collection("members").find({}).toArray(function(err, result) {
@@ -66,14 +69,48 @@ app.get('/show', function(req , res) {
                 console.log("error:" + err);
                 return
             }
-            console.log(res);
+           // console.log(result);
             res.render('show',{memberdata:result});
 
-            mydb.close();
+            
         });
 
 
 });
+
+app.get('/memberdelete/:id', function(req , res) {
+
+    var mid = req.params.id;
+   console.log(mid);
+    mydb.collection("members").remove({"_id":new mongodb.ObjectID(mid)}, function(err, result) { 
+        console.log(result);
+        //return false;
+        if(result.result.n == 1){
+          //  res.send(result)
+          console.log('entered')          
+            mydb.collection("members").find({}).toArray(function(err, result) {
+                if (err) {
+                    console.log("error:" + err);
+                    return
+                }
+                console.log('result');
+                res.render('show',{memberdata:result,DeleteMsg:"Record Deleted Sucessfully"});
+                mydb.close();
+            });
+
+        }
+        else
+        {
+            //console.log("Else render conditions");
+            //return false;
+            res.render('show',{msg: 'error: '+ err });
+        }
+       
+    });
+
+});
+
+
 
 
 

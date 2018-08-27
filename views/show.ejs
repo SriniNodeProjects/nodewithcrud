@@ -3,7 +3,13 @@
      <title>Show Details</title>
  </head>
 <body>
-<p></p>
+<!-- <p style="color:green;"> 
+    <% 
+     //var DeleteMsg;
+    //if(DeleteMsg == '' || DeleteMsg == undefined){ %>
+        <%= //DeleteMsg %> 
+    <% //} %>
+</p> -->
 <table>
     <thead>
       <th>
@@ -18,12 +24,13 @@
     <%  var i = 0; %>
     <% memberdata.forEach(function(data,i) { %>
         <tr>
-            <td><%= i %></td>
+            <td><%= i %><%= data._id %></td>
             <td><%= data.firstname %></td>
             <td><%= data.lastname %></td>
             <td><%= data.email %></td>
             <td><%= data.phno %></td>
-            <td><a href="">Edit</a><a href="">Delete</a></td>
+            <td><a href="">Edit</a></td>
+           <td> <a href="/memberdelete/<%= data._id %>"> Delete </a></td>
         </tr>
         <% i++ %>
     <% }) %>
