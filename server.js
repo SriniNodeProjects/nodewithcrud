@@ -2,7 +2,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var mongodb = require('mongodb');
-
 const bcrypt = require('bcrypt');
 var mydb;
 var app = express();
@@ -110,6 +109,53 @@ app.get('/memberdelete/:id', function(req , res) {
 
 });
 
+app.get('/memberedit/:id',function(req , res)
+{
+    let id = new mongodb.ObjectID(req.params.id);
+  
+    mydb.collection("members").findOne({_id:id},function(err, result) {
+        if (err) {
+            console.log("error:" + err);
+            return
+            
+        }
+       console.log(result);
+       res.render('edit',{memberdata:result});
+    });
+  
+
+
+   //res.render('edit');              
+});
+
+app.post('/update',function(req , res)
+{
+    //let hash = bcrypt.hashSync('req.body.pwd', 10);
+    const user = {
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        password: req.body.password,
+        phno: req.body.phno 
+    }
+    mydb.collection('members').update({'_id':new mongodb.ObjectID(req.body.userid)}, {$set: user}, {w:1}, function(err, result1){
+        
+        mydb.collection("members").findOne({_id:new mongodb.ObjectID(req.body.userid)},function(err, result) {
+            if (err) {
+                console.log("error:" + err);
+                return
+                
+            }
+           console.log(result); 
+           res.render('edit',{memberdata:result});
+        });
+     
+    });
+
+    
+ 
+   
+});
 
 
 
